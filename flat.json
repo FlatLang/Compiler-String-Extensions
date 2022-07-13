@@ -1,0 +1,19 @@
+{
+  "name": "Compiler String Extensions",
+  "version": "0.1.0",
+  "description": "Flat Compiler String Extensions",
+  "author": "Braden Steffaniak",
+  "license": "ISC",
+  "scripts": {},
+  "main": {
+    "source": "src/main",
+    "dependencies": {}
+  },
+  "test": {
+    "mainClass": "flatlang/http/CompilerStringExtensions_TestSuite",
+    "source": "src",
+    "dependencies": {
+      "github:FlatLang/Nest": "master"
+    }
+  }
+}
