@@ -7,7 +7,9 @@
   "scripts": {},
   "main": {
     "source": "src/main",
-    "dependencies": {}
+    "dependencies": {
+      "github:FlatLang/Standard-Library": "master"
+    }
   },
   "test": {
     "mainClass": "flatlang/http/CompilerStringExtensions_TestSuite",
