@@ -60,7 +60,7 @@ extension SyntaxStringFunctions {
             }
         }
 
-        return new Tuple2(array, bracketIndex + 1)
+        return Tuple2(array, bracketIndex + 1)
     }
 
     /// If contains given search string surrounded by whitespace
@@ -457,7 +457,7 @@ extension SyntaxStringFunctions {
     }
 
     public findCharOnTopLevel(String this, Char needle, Int start = 0, Bool searchGenerics = false) -> Int {
-        String[] array = new Array(1)
+        String[] array = Array(1)
 
         array.add("#needle")
 
@@ -465,7 +465,7 @@ extension SyntaxStringFunctions {
     }
 
     public findCharOnTopLevel(String this, Char[] needles, Int start = 0, Bool searchGenerics = false) -> Int {
-        String[] array = new Array(needles.count)
+        String[] array = Array(needles.count)
 
         for (needle in needles) {
             array.add("#needle")
@@ -577,7 +577,7 @@ extension SyntaxStringFunctions {
                 }
             }
         } else {
-            // throw new UnimplementedOperationException("forwards checking not implemented yet... Looks like its time to do that.")
+            // throw UnimplementedOperationException("forwards checking not implemented yet... Looks like its time to do that.")
         }
     }
 
