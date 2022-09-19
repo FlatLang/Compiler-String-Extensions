@@ -1,12 +1,12 @@
-package flatlang/extensions
+package flat/extensions
 
-import flatlang/regex/Regex
-import flatlang/regex/Pattern
-import flatlang/regex/Match
-import flatlang/datastruct/Tuple2
-import flatlang/datastruct/list/Stack
+import flat/regex/Regex
+import flat/regex/Pattern
+import flat/regex/Match
+import flat/datastruct/Tuple2
+import flat/datastruct/list/Stack
 
-import flatlang/regex/RegexStringExtensions
+import flat/regex/RegexStringExtensions
 
 [AutoFinal]
 extension SyntaxStringFunctions {

@@ -16,7 +16,7 @@
       }
     },
     "test": {
-      "mainClass": "flatlang/extensions/SyntaxStringFunctions_TestSuite",
+      "mainClass": "flat/extensions/SyntaxStringFunctions_TestSuite",
       "source": "src/**/*_Test*.flat",
       "dependencies": {
         "github:FlatLang/Nest": "master",

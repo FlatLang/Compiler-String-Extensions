@@ -1,6 +1,6 @@
-package flatlang/extensions
+package flat/extensions
 
-import flatlang/extensions/SyntaxStringFunctions
+import flat/extensions/SyntaxStringFunctions
 
 testable class {
   test `can create`() {
