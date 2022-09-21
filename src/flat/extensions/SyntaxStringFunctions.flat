@@ -426,6 +426,10 @@ extension SyntaxStringFunctions {
         return strs
     }
 
+    public splitWhitespace(String this, Bool searchGenerics = false, Bool allowTrailing = false) -> String[] {
+      return splitOnTopLevel(WHITESPACE, searchGenerics, allowTrailing)
+    }
+
     /**
      * Split the src by the given chars. Makes sure not to split within parentheses and quotes.
      *
