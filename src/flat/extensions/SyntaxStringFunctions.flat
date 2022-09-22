@@ -181,24 +181,34 @@ extension SyntaxStringFunctions {
     }
 
     public isSurroundedByQuotes(String this) =>
-        count >= 2 && chars.first == '"' && chars.last == '"'
+      isSurroundedByChars('"', '"')
 
-    /**
-     * Remove the surrounding double quotes from the given input String.<br>
-     * For example:
-     * <blockquote><pre>
-     * String s = "\"C:/myfile/test\""
-     * String out = removeSurroundingQuotes(s)</pre></blockquote>
-     * The out String would contain the data "C:/myfile/test" without
-     * the surrounding quotes.
-     *
-     * @param input The String to remove the surrounding quotes from.
-     * @return The String without the surrounding quotes.
-     */
-    public removeSurroundingQuotes(String this) -> String {
+    public removeSurroundingQuotes(String this) =>
+      removeSurroundingChars('"', '"')
+
+    public isSurroundedByBrackets(String this) =>
+      isSurroundedByChars('[', ']')
+
+    public removeSurroundingBrackets(String this) =>
+      removeSurroundingChars('[', ']')
+
+    public isSurroundedByChars(String this, Char beginning, Char ending) =>
+      count >= 2 && chars.first == beginning && chars.last == ending
+
+    /// Remove the surrounding chars from the given input String.<br>
+    /// For example:
+    /// <blockquote><pre>
+    /// String s = "\"C:/myfile/test\""
+    /// String out = s.removeSurroundingChars('"', '"')</pre></blockquote>
+    /// The out String would contain the data "C:/myfile/test" without
+    /// the surrounding quotes.
+    ///
+    /// @param input The String to remove the surrounding chars from.
+    /// @return The String without the surrounding chars.
+    public removeSurroundingChars(String this, Char beginning, Char ending) -> String {
         var input = this
 
-        while (input.isSurroundedByQuotes()) {
+        while (input.isSurroundedByChars(beginning, ending)) {
             input = input.substring(1, input.count - 1)
         }
 
