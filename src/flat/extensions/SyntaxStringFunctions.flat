@@ -470,62 +470,66 @@ extension SyntaxStringFunctions {
         return strs
     }
 
-    public findCharOnTopLevel(String this, Char needle, Int start = 0, Bool searchGenerics = false) -> Int {
+    public findLastWhitespaceOnTopLevel(String this, Int start = count - 1, Bool searchGenerics = false) =>
+      findWhitespaceOnTopLevel(start, searchGenerics, step: -1)
+
+    public findWhitespaceOnTopLevel(String this, Int start = 0, Bool searchGenerics = false, Int step = 1) =>
+      findCharOnTopLevel(WHITESPACE, start, searchGenerics, step)
+
+    public findCharOnTopLevel(String this, Char needle, Int start = 0, Bool searchGenerics = false, Int step = 1) -> Int {
         String[] array = Array(1)
 
         array.add("#needle")
 
-        return findStringOnTopLevel(array, start, searchGenerics)
+        return findStringOnTopLevel(array, start, searchGenerics, step)
     }
 
-    public findCharOnTopLevel(String this, Char[] needles, Int start = 0, Bool searchGenerics = false) -> Int {
+    public findCharOnTopLevel(String this, Char[] needles, Int start = 0, Bool searchGenerics = false, Int step = 1) -> Int {
         String[] array = Array(needles.count)
 
         for (needle in needles) {
             array.add("#needle")
         }
 
-        return findStringOnTopLevel(array, start, searchGenerics)
+        return findStringOnTopLevel(array, start, searchGenerics, step)
     }
 
-    public findWordOnTopLevel(String this, String word, Int start = 0, Bool searchGenerics = false, Int defaultReturnValue = -1) -> Int {
+    public findWordOnTopLevel(String this, String word, Int start = 0, Bool searchGenerics = false, Int step = 1, Int defaultReturnValue = -1) -> Int {
         var index = findStringOnTopLevel(word, start, searchGenerics, defaultReturnValue)
 
         while (index >= 0 && ((index > 0 && !WORD_BOUNDARIES.contains(chars[index - 1])) ||
             (index + word.count < count - 1 && !WORD_BOUNDARIES.contains(chars[index + word.count])))) {
-            index = findStringOnTopLevel(word, index + word.count + 1, searchGenerics, defaultReturnValue)
+            index = findStringOnTopLevel(word, index + word.count + 1, searchGenerics, step, defaultReturnValue)
         }
 
         return index
     }
 
-    public findStringOnTopLevel(String this, String needle, Int start = 0, Bool searchGenerics = false, Int defaultReturnValue = -1) =>
-        findStringOnTopLevel([needle], start, searchGenerics, defaultReturnValue)
+    public findStringOnTopLevel(String this, String needle, Int start = 0, Bool searchGenerics = false, Int step = 1, Int defaultReturnValue = -1) =>
+        findStringOnTopLevel([needle], start, searchGenerics, step, defaultReturnValue)
 
-    public findStringOnTopLevel(String this, String[] needles, var Int start = 0, Bool searchGenerics = false, Int defaultReturnValue = -1) => defaultReturnValue {
-        while (start < count) {
-            let c = chars[start]
+    public findStringOnTopLevel(String this, String[] needles, Int start = 0, Bool searchGenerics = false, Int step = 1, Int defaultReturnValue = -1) => defaultReturnValue {
+        var Int index = start
 
-            if (containsString(needles, start)) {
-                return start
+        while (index < count && index >= 0) {
+            let c = chars[index]
+
+            if (containsString(needles, index)) {
+                return index
             } else {
                 match (c) {
-                    '"'  => start = findEndingQuote(start) + 1
-                    '\'' => start = findEndingSingleQuote(start) + 1
-                    '('  => start = findEndingMatch(start, '(', ')') + 1
-                    '{'  => start = findEndingMatch(start, '{', '}') + 1
-                    '['  => start = findEndingMatch(start, '[', ']') + 1
+                    '"'  => index = findEndingQuote(index, direction: step) + step
+                    '\'' => index = findEndingSingleQuote(index, direction: step) + step
+                    '('  => index = findEndingMatch(index, '(', ')', direction: step) + step
+                    '{'  => index = findEndingMatch(index, '{', '}', direction: step) + step
+                    '['  => index = findEndingMatch(index, '[', ']', direction: step) + step
                     '<'  => {
                         if (searchGenerics) {
-                            start = findEndingMatch(start, '<', '>')
+                            index = findEndingMatch(index, '<', '>', direction: step)
                         }
                         fallthrough
                     }
-                    default => start++
-                }
-
-                if (start <= 0) {
-                    return -1
+                    default => index += step
                 }
             }
         }
