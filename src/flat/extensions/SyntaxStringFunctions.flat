@@ -22,9 +22,18 @@ extension SyntaxStringFunctions {
   static Char[] WORD_BOUNDARIES = " \t\n\r-+~!=%^&|*/\\><,\"'[]{};:?()".chars.toCharArray()
 
   public Bool String.isIdentifier => count > 0 && matches(/[A-Za-z_][A-Za-z0-9_]*/)
-  public Bool String.isNumber => count > 0 && matches(/-?[0-9]+/)
+  public Bool String.isNumber => count > 0 && matches(/-?[0-9]+(\.[0-9]+)?/)
+  public Bool String.isFloat => count > 0 && matches(/-?[0-9]+\.[0-9]+/)
+  public Bool String.isInteger => count > 0 && matches(/-?[0-9]+/)
+  public Bool String.isUnsignedNumber => matches(/[0-9]+(\.[0-9]+)?/)
+  public Bool String.isUnsignedFloat => count > 0 && matches(/[0-9]+\.[0-9]+/)
+  public Bool String.isUnsignedInteger => count > 0 && matches(/[0-9]+/)
   public Bool String.isBool => this == "true" || this == "false"
   public String String.firstWord => nextWord()
+
+  public isUnsignedNumber(String this) => matches(/[0-9]+(\.[0-9]+)?/)
+  public isUnsignedFloat(String this) => count > 0 && matches(/[0-9]+\.[0-9]+/)
+  public isUnsignedInteger(String this) => count > 0 && matches(/[0-9]+/)
 
   public containsAllWhitespaceAfter(String this, Int index, Int direction = 1) -> Bool {
     for (var i = index; i < count && i >= 0; i += direction) {
