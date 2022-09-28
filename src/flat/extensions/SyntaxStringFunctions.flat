@@ -15,6 +15,7 @@ extension SyntaxStringFunctions {
   static Char[] EITHER_STATEMENT_END_CHARS = "\n;{}".chars.toCharArray()
 
   static Char[] SYMBOLS_CHARS = "-+~!=%^&|*/\\><,\"'[]{};:?()".chars.toCharArray()
+  static Char[] ALL_SYMBOLS_CHARS = "-+~!=%^&|*/\\><,\"'[]{};:?().".chars.toCharArray()
   static Char[] STMT_PRE_CONT_CHARS = "-+~!=%^&|*/\\><,.[".chars.toCharArray()
   static Char[] STMT_POST_CONT_CHARS = "-+~!=%^&|*/\\><,.]".chars.toCharArray()
   static Char[] INVALID_DECLARATION_CHARS = "-+~!=%^|/\"\\'{};()".chars.toCharArray()
@@ -34,7 +35,7 @@ extension SyntaxStringFunctions {
   public isUnsignedNumber(String this) => matches(/[0-9]+(\.[0-9]+)?/)
   public isUnsignedFloat(String this) => count > 0 && matches(/[0-9]+\.[0-9]+/)
   public isUnsignedInteger(String this) => count > 0 && matches(/[0-9]+/)
-  public isSymbol(String this) => chars.toCharArray().all({ SyntaxStringFunctions.SYMBOLS_CHARS.contains(_) })
+  public isSymbol(String this) => chars.toCharArray().all({ SyntaxStringFunctions.ALL_SYMBOLS_CHARS.contains(_) })
 
   public containsAllWhitespaceAfter(String this, Int index, Int direction = 1) -> Bool {
     for (var i = index; i < count && i >= 0; i += direction) {
