@@ -33,8 +33,34 @@ extension SyntaxStringFunctions {
   public String String.firstWord => nextWord()
 
   public isUnsignedNumber(String this) => matches(/[0-9]+(\.[0-9]+)?/)
-  public isUnsignedFloat(String this) => count > 0 && matches(/[0-9]+\.[0-9]+/)
-  public isUnsignedInteger(String this) => count > 0 && matches(/[0-9]+/)
+
+  public isUnsignedFloat(String this) => false {
+    if (count == 0) return false
+
+    for (var Int i = 0; i < count; i++) {
+      let c = chars[i]
+
+      switch c {
+        '0' => '1' => '2' => '3' => '4' => '5' => '6' => '7' => '8' => '9' => continue
+        '.' => return isUnsignedInteger(i)
+        default => return false
+      }
+    }
+  }
+
+  public isUnsignedInteger(String this, var Int index = 0) => true {
+    if (count == index) return false
+
+    while (index < count) {
+      let c = chars[index++]
+
+      switch c {
+        '0' => '1' => '2' => '3' => '4' => '5' => '6' => '7' => '8' => '9' => continue
+        default => return false
+      }
+    }
+  }
+
   public isSymbol(String this) => chars.toCharArray().all({ SyntaxStringFunctions.ALL_SYMBOLS_CHARS.contains(_) })
 
   public containsAllWhitespaceAfter(String this, Int index, Int direction = 1) -> Bool {
