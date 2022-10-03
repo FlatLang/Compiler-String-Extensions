@@ -15,7 +15,7 @@ extension SyntaxStringFunctions {
   static Char[] EITHER_STATEMENT_END_CHARS = "\n;{}".chars.toCharArray()
 
   static Char[] SYMBOLS_CHARS = "-+~!=%^&|*/\\><,\"'[]{};:?()".chars.toCharArray()
-  static Char[] ALL_SYMBOLS_CHARS = "-+~!=%^&|*/\\><,\"'[]{};:?().".chars.toCharArray()
+  static Char[] ALL_SYMBOLS_CHARS = "-+~!=%^&|*/\\><,\"'[]{};:?().\#$".chars.toCharArray()
   static Char[] STMT_PRE_CONT_CHARS = "-+~!=%^&|*/\\><,.[".chars.toCharArray()
   static Char[] STMT_POST_CONT_CHARS = "-+~!=%^&|*/\\><,.]".chars.toCharArray()
   static Char[] INVALID_DECLARATION_CHARS = "-+~!=%^|/\"\\'{};()".chars.toCharArray()
