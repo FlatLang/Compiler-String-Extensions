@@ -8,7 +8,6 @@ import flat/datastruct/list/Stack
 
 import flat/regex/RegexStringExtensions
 
-[AutoFinal]
 extension SyntaxStringFunctions {
   static Char[] WHITESPACE = " \t\n\r".chars.toCharArray()
 
