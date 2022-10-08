@@ -62,6 +62,10 @@ extension SyntaxStringFunctions {
 
   public isSymbol(String this) => chars.toCharArray().all({ SyntaxStringFunctions.ALL_SYMBOLS_CHARS.contains(_) })
 
+  public isCharLiteral(String this) =>
+    (count == 3 && first == '\'' && last == '\'') ||
+    (count == 4 && first == '\'' && last == '\'' && this[1] == '\\')
+
   public containsAllWhitespaceAfter(String this, Int index, Int direction = 1) -> Bool {
     for (var i = index; i < count && i >= 0; i += direction) {
       if (!WHITESPACE.contains(chars[i])) {
