@@ -405,7 +405,7 @@ extension SyntaxStringFunctions {
     var prev = 0
     var dot  = findDotOperatorIndex()
 
-    let fragments = new String[]
+    let fragments = String[]
 
     while (dot > 0) {
       fragments.add(substring(prev, dot))
@@ -452,7 +452,7 @@ extension SyntaxStringFunctions {
    * @return An array of Strings containing the Strings that were split.
    */
   public splitOnTopLevel(String this, String str, Bool searchGenerics = false, Bool allowTrailing = false) -> String[] {
-    String[] strs = new String[]
+    String[] strs = String[]
 
     if (trim().count == 0) {
       return strs
@@ -486,7 +486,7 @@ extension SyntaxStringFunctions {
    * @return An array of Strings containing the Strings that were split.
    */
   public splitOnTopLevel(String this, Char[] chars, Bool searchGenerics = false, Bool allowTrailing = false) -> String[] {
-    String[] strs = new String[]
+    String[] strs = String[]
 
     if (trim().count == 0) {
       return strs
