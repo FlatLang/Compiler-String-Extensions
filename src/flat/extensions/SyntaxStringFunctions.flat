@@ -268,12 +268,23 @@ extension class {
     return true
   }
 
-  public static defaultCharacterCheck(String value, Char c, Int start, Int direction = 1) -> Int {
+	public static isCharacterEscaped(String value, Int start) -> Bool {
+		if (start <= 0) {
+			return false
+		}
+		if (value[start - 1] != '\\') {
+			return false
+		}
+
+		return !isCharacterEscaped(value, start - 1)
+	}
+
+  public static defaultCharacterCheck(String value, Char c, var Int start, Int direction = 1) -> Int {
     start += direction
 
-    if (start > 0 && value[start - 1] == '\\' && value[start - 2] != '\\') {
-      return start + direction
-    }
+    while (isCharacterEscaped(value, start)) {
+			start = start + direction;
+		}
 
     return start
   }
