@@ -36,7 +36,7 @@ extension class {
   public isUnsignedFloat(String this) => false {
     if (count == 0) return false
 
-    for (var Int i = 0; i < count; i++) {
+    for (i in 0..count) {
       let c = chars[i]
 
       switch c {
