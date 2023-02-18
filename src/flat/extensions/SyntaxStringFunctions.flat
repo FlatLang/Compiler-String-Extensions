@@ -335,14 +335,14 @@ extension class {
     findEndingStringChar('\'', start, direction)
 
   private findEndingStringChar(String this, Char c, Int start, Int direction = 1) =>
-    findEndingChar(c, start, direction, (str, c, i, dir) => {
+    findEndingChar(c, start, direction, (str, char, i, dir) => {
       i += dir
 
       if (dir > 0 && i < str.count - 3 && str[i] == '#' && str[i + 1] == '{') {
         return (i = str.findEndingChar('}', i + dir, dir)) >= 0 ? i + dir : i
       }
 
-      return defaultCharacterCheck(str, c, i - dir, dir)
+      return defaultCharacterCheck(str, char, i - dir, dir)
     })
 
   public findEndingMatch(String this, Int index, Char start, Char end, Int direction = 1, Char escapeChar = '\0') =>
