@@ -3,7 +3,7 @@ package flat/extensions
 import flat/regex/Regex
 import flat/regex/Pattern
 import flat/regex/Match
-import flat/datastruct/Tuple2
+import flat/datastruct
 import flat/datastruct/list/Stack
 
 import flat/regex/RegexStringExtensions
@@ -76,7 +76,7 @@ extension class {
     return true
   }
 
-  public getArrayAccesses(String this) -> Tuple2<Array<String>, Int> {
+  public getArrayAccesses(String this) -> Pair<Array<String>, Int> {
     var String[] array = null
     var bracketIndex = count - 1
 
@@ -100,7 +100,7 @@ extension class {
       }
     }
 
-    return Tuple2(array, bracketIndex + 1)
+    return Pair(array, bracketIndex + 1)
   }
 
   /// If contains given search string surrounded by whitespace
