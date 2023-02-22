@@ -9,7 +9,7 @@ import flat/datastruct/list/Stack
 import flat/regex/RegexStringExtensions
 
 extension class {
-  static Char[] WHITESPACE = " \t\n\r".chars.toCharArray()
+  public static Char[] WHITESPACE = " \t\n\r".chars.toCharArray()
 
   static Char[] EITHER_STATEMENT_END_CHARS = "\n;{}".chars.toCharArray()
 
