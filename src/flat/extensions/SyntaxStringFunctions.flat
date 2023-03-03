@@ -279,14 +279,14 @@ extension class {
 		return !isCharacterEscaped(value, start - 1)
 	}
 
-  public static defaultCharacterCheck(String value, Char c, var Int start, Int direction = 1) -> Int {
-    start += direction
+  public static defaultCharacterCheck(String value, Char char, var Int startI, Int directionI = 1) -> Int {
+    startI += directionI
 
-    while (isCharacterEscaped(value, start)) {
-			start = start + direction;
+    while (isCharacterEscaped(value, startI)) {
+			startI = startI + directionI
 		}
 
-    return start
+    return startI
   }
 
   /**
