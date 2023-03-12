@@ -300,7 +300,14 @@ extension class {
    * @return The index of the matching char. If an end is not found, -1
    *    is returned instead.
    */
-  public findEndingChar(String this, Char c, var Int start, Int direction = 1, advance(String, Char, Int, Int) -> Int = defaultCharacterCheck, Int defaultReturnValue = -1) -> Int {
+  public findEndingChar(
+    String this,
+    Char c,
+    var Int start,
+    Int direction = 1,
+    advance(String, Char, Int, Int) -> Int = defaultCharacterCheck,
+    Int defaultReturnValue = -1
+  ) -> Int {
     if (start < 0 || start >= count) {
       return -1
     }
