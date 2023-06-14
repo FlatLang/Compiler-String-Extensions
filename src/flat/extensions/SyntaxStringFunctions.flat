@@ -534,6 +534,9 @@ extension class {
     public findWhitespaceOnTopLevel(String this, Int start = 0, Bool searchGenerics = false, Int step = 1) =>
         findCharOnTopLevel(WHITESPACE, start, searchGenerics, step)
 
+    public findWhitespaceOutsideOfString(String this, Int start = 0, Int step = 1) =>
+        findCharOutsideOfString(WHITESPACE, start, step)
+
     public findCharOnTopLevel(String this, Char needle, Int start = 0, Bool searchGenerics = false, Int step = 1) -> Int {
         Char[] array = Array(1)
 
@@ -565,6 +568,22 @@ extension class {
                     }
                     default => index += step
                 }
+            }
+        }
+    }
+
+    public findCharOutsideOfString(String this, Char[] needles, Int start = 0, Int step = 1, Int defaultReturnValue = -1) => defaultReturnValue {
+        var Int index = start
+
+        while (index < count && index >= 0) {
+            let c = chars[index]
+
+            if (needles.any({ _ == c })) return index
+
+            match c {
+                '"' => index = findEndingQuote(index, direction: step) + step
+                '\'' => index = findEndingSingleQuote(index, direction: step) + step
+                default => index += step
             }
         }
     }
